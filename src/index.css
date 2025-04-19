@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Rouge+Script&display=swap");
+@import "tailwindcss";
+body {
+  background-image: url("https://img.freepik.com/free-vector/modern-abstract-pink-background-with-elegant-elements-vector-illustration_361591-3691.jpg?t=st=1741361552~exp=1741365152~hmac=bc7bb1b462558f40ea17ae702e36143f00015d44f1e50e93eb3450a90a611605&w=1380");
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  overflow-x: hidden;
+
+  height: 100vh;
+  overflow-y: hidden;
+}

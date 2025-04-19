@@ -1,0 +1,743 @@
+.backg {
+  width: 350px;
+  height: 550px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.birthdayText {
+  text-align: center;
+  font-family: "Cookie", cursive;
+  font-size: 45px;
+  z-index: 100;
+  color: whitesmoke;
+  position: relative;
+
+  background: #c146a1;
+  background: linear-gradient(
+    to right,
+    #d64cb1 0%,
+    #c146a1 50%,
+    #a80077 51%,
+    #db36a4 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.table {
+  border-bottom: 130px solid #f2a65a;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  width: 308px;
+  position: relative;
+  top: 420px;
+}
+.hair1 {
+  height: 70px;
+  width: 140px;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  background-color: black;
+  position: relative;
+  top: 30px;
+  left: 95px;
+}
+.hair2 {
+  width: 140px;
+  height: 180px;
+  background-color: black;
+  position: relative;
+  border-radius: 0px 0px 60px 60px;
+  top: 62.5px;
+}
+.face {
+  background-color: #ffecb3;
+  height: 90px;
+  width: 110px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  position: relative;
+  left: 15px;
+}
+.eyel {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: relative;
+  top: 16px;
+  left: 9px;
+}
+
+.eyer {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: relative;
+  bottom: 14px;
+  left: 70px;
+}
+.eyeball1,
+.eyeball2 {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  border-radius: 50%;
+  top: 4px;
+  left: 4.5px;
+}
+
+.girl:hover .eyeball1 {
+  animation: 4s see;
+  -webkit-animation: 4s see;
+}
+@keyframes see {
+  50% {
+    top: 8.5px;
+    left: 6.5px;
+  }
+}
+@-webkit-keyframes see {
+  50% {
+    top: 8.5px;
+    left: 6.5px;
+  }
+}
+.girl:hover .eyeball2 {
+  animation: 4s seee;
+  -webkit-animation: 4s seee;
+}
+@keyframes seee {
+  50% {
+    top: 8px;
+    left: 2px;
+  }
+}
+@-webkit-keyframes seee {
+  50% {
+    top: 8px;
+    left: 2px;
+  }
+}
+.dot1,
+.dot3 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+  top: 4px;
+}
+.dot1 {
+  left: 2px;
+}
+.dot3 {
+  left: 10px;
+}
+.dot2,
+.dot4 {
+  width: 3px;
+  height: 3px;
+  background-color: white;
+  position: relative;
+  top: 4px;
+  border-radius: 50%;
+}
+.dot2 {
+  left: 14px;
+}
+.dot4 {
+  left: 5px;
+}
+.belt {
+  background-color: #66ccff;
+  height: 55px;
+  width: 110px;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  bottom: 143px;
+  left: 14.5px;
+  position: relative;
+}
+.belt1 {
+  background-color: black;
+  height: 56px;
+  width: 112px;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  position: relative;
+  left: -0.5px;
+  top: 7px;
+}
+.mouth {
+  background-color: #ffb3b3;
+  height: 25px;
+  width: 50px;
+  left: 29px;
+  bottom: 5px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  position: relative;
+}
+.girl:hover .mouth {
+  animation: 4s blow;
+  -webkit-animation: 4s blow;
+}
+@keyframes blow {
+  50% {
+    width: 20px;
+    height: 20px;
+    left: 43px;
+    border-radius: 50%;
+  }
+}
+@-webkit-keyframes blow {
+  50% {
+    width: 20px;
+    height: 20px;
+    left: 43px;
+    border-radius: 50%;
+  }
+}
+.dress {
+  background-color: #66ccff;
+  width: 120px;
+  height: 130px;
+  border-radius: 35px 35px 0px 0px;
+  position: relative;
+  top: 18px;
+  right: 6px;
+}
+.neck {
+  background-color: #ffecb3;
+  position: relative;
+  height: 40px;
+  width: 30px;
+  border-radius: 0px 0px 15px 15px;
+  bottom: 130px;
+  left: 40px;
+}
+.earl,
+.earr {
+  background-color: #ffecb3;
+  position: relative;
+  height: 10px;
+  width: 20px;
+
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+}
+.earl {
+  transform: rotate(-90deg);
+  right: 5px;
+  bottom: 118px;
+}
+.earr {
+  transform: rotate(90deg);
+  left: 124px;
+  bottom: 127px;
+}
+.cake {
+  background-color: #ff6666;
+  width: 180px;
+  height: 70px;
+
+  position: relative;
+  top: 200px;
+  left: 70px;
+}
+.strip1 {
+  width: 180px;
+  height: 10px;
+  background-color: #ffffb3;
+  position: relative;
+  top: 30px;
+}
+.cake1 {
+  background-color: #ffff80;
+  width: 140px;
+  height: 60px;
+  bottom: 70px;
+  left: 22px;
+  position: relative;
+}
+.strip2 {
+  width: 140px;
+  height: 10px;
+  top: 30px;
+  background-color: #ffffb3;
+  position: relative;
+}
+.d1,
+.d2,
+.d3,
+.d4,
+.d5,
+.d6,
+.d7,
+.d8,
+.d9 {
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  position: relative;
+  height: 10px;
+  width: 20px;
+  background-color: white;
+}
+.d1 {
+  bottom: 10px;
+}
+.d2 {
+  left: 20px;
+  bottom: 20px;
+}
+.d3 {
+  left: 40px;
+  bottom: 30px;
+}
+.d4 {
+  left: 60px;
+  bottom: 40px;
+}
+.d5 {
+  left: 80px;
+  bottom: 50px;
+}
+.d6 {
+  left: 100px;
+  bottom: 60px;
+}
+.d7 {
+  left: 120px;
+  bottom: 70px;
+}
+.d8 {
+  left: 140px;
+  bottom: 80px;
+}
+.d9 {
+  bottom: 90px;
+  left: -20px;
+}
+.drip {
+  position: relative;
+  bottom: 10px;
+  right: 1.5px;
+}
+.candle {
+  height: 40px;
+  width: 15px;
+  background-color: #dfff80;
+  position: relative;
+  top: 144px;
+  left: 148px;
+}
+
+.candle-row {
+  display: flex;
+  gap: 2px;
+}
+
+.c1,
+.c2,
+.c3,
+.c4,
+.c5,
+.c6,
+.c7 {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #ff6666;
+}
+.c1 {
+  bottom: 185px;
+}
+.c2 {
+  bottom: 200px;
+  left: 20px;
+}
+.c3 {
+  bottom: 215px;
+  left: 40px;
+}
+.c4 {
+  bottom: 230px;
+  left: 60px;
+}
+.c5 {
+  bottom: 245px;
+  left: 80px;
+}
+.c6 {
+  bottom: 260px;
+  left: 100px;
+}
+.c7 {
+  bottom: 275px;
+  left: 120px;
+}
+.flame {
+  width: 15px;
+  height: 7.5px;
+  position: relative;
+  background-color: #ff8d00;
+  bottom: 8px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+}
+.girl:hover .flame {
+  animation: 2s vanish forwards;
+  webkit-animation: 2s vanish forwards;
+}
+@keyframes vanish {
+  100% {
+    background-color: #ffecb3;
+  }
+}
+@-webkit-keyframes vanish {
+  100% {
+    background-color: #ffecb3;
+  }
+}
+
+.flame1 {
+  width: 0;
+  height: 0;
+  border-left: 7.5px solid transparent;
+  border-right: 7.5px solid transparent;
+  border-bottom: 15px solid #ff8d00;
+  position: relative;
+  bottom: 15px;
+}
+
+.girl:hover .flame1 {
+  animation: 2s vanishh forwards;
+  webkit-animation: 2s vanishh forwards;
+}
+
+@keyframes vanishh {
+  100% {
+    border-bottom: 15px solid #ffecb3;
+  }
+}
+@-webkit-keyframes vanishh {
+  100% {
+    border-bottom: 15px solid #ffecb3;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0; /* make things invisible upon start */
+  -webkit-animation: fadeIn ease-in 1; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+.fade-in.one {
+  -webkit-animation-delay: 03s;
+  -moz-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+/* Add these styles to your existing BirthdayAnimation.css file */
+
+.media-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.media-player:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.play-button {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+.play-button:hover {
+  background-color: #ff4d4d;
+  transform: scale(1.05);
+}
+
+.song-title {
+  font-family: "Cookie", cursive;
+  color: #c146a1;
+  font-size: 18px;
+}
+
+/* Add these styles to your existing BirthdayAnimation.css file */
+
+/* Audio Player - Bottom Right */
+.media-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.media-player:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.play-button {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+.play-button:hover {
+  background-color: #ff4d4d;
+  transform: scale(1.05);
+}
+
+.song-title {
+  font-family: "Cookie", cursive;
+  color: #c146a1;
+  font-size: 18px;
+}
+
+/* Video Player Trigger - Bottom Left */
+.video-trigger {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.video-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.02);
+}
+
+.video-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.video-text {
+  font-family: "Cookie", cursive;
+  color: #c146a1;
+  font-size: 18px;
+}
+
+/* Video Player Dialog */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.video-dialog {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.3s ease;
+}
+
+.video-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.video-header h3 {
+  margin: 0;
+  font-family: "Cookie", cursive;
+  color: #c146a1;
+  font-size: 24px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #ff6666;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.video-container:hover .video-controls {
+  opacity: 1;
+}
+
+.video-play-button {
+  background-color: rgba(255, 102, 102, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.video-play-button:hover {
+  background-color: rgba(255, 102, 102, 0.9);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Make the video dialog responsive */
+@media (max-width: 640px) {
+  .video-dialog {
+    width: 95%;
+    max-height: 80vh;
+  }
+
+  .video-header h3 {
+    font-size: 20px;
+  }
+}
