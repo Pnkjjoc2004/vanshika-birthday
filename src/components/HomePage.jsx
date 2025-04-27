@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import "../components/HomePageCss.css";
 import Stepper, { Step } from "./Animations/Stepper/Stepper";
@@ -20,9 +19,8 @@ const HomePage = () => {
       const today = new Date();
       const targetDate = new Date(today.getFullYear(), 4, 19); // Month is 0-indexed, so 4 = May
 
-      // Calculate if we should show content
-      // const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
-      const isMay19 = true;
+      // Properly check if it's May 19th
+      const isMay19 = today.getDate() === 19 && today.getMonth() === 4; // May is month 4 (0-indexed)
       setIsVisible(isMay19);
 
       // Calculate time remaining until May 19
@@ -64,7 +62,7 @@ const HomePage = () => {
     );
   }
 
-  if (!isVisible) {
+  if (isVisible) {
     return (
       <div className="h-dvh overflow-y-hidden">
         <Navbar />
