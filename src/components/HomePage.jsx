@@ -62,7 +62,8 @@ const HomePage = () => {
     );
   }
 
-  if (isVisible) {
+  // This is the only part that changed - reversed the condition
+  if (!isVisible) {
     return (
       <div className="h-dvh overflow-y-hidden">
         <Navbar />
