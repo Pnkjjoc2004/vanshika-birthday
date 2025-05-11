@@ -14,19 +14,17 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if today is May 19th
     const checkDate = () => {
       const today = new Date();
-      const targetDate = new Date(today.getFullYear(), 4, 19); // Month is 0-indexed, so 4 = May
+      const targetDate = new Date(today.getFullYear(), 4, 19); // May 19th (month 4, as months are 0-indexed)
 
-      // Calculate if we should show content
-      // const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
-      const isMay19 = true;
+      // Check if today's date matches May 19th
+      const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
       setIsVisible(isMay19);
 
-      // Calculate time remaining until May 19
+      // Calculate time remaining if it's not May 19th yet
       if (!isMay19) {
-        // If today is after May 19 this year, set target to next year
+        // If today is after May 19th this year, set the target date to next year
         if (today > targetDate) {
           targetDate.setFullYear(today.getFullYear() + 1);
         }
