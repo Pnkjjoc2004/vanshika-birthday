@@ -61,7 +61,7 @@ const RollingGallery = ({
     controls.start({
       rotateY: [startAngle, startAngle - 360],
       transition: {
-        duration: 20,
+        duration: 60, // ⬅️ slower spin
         ease: "linear",
         repeat: Infinity,
       },
@@ -151,7 +151,7 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[400px] overflow-hidden my-auto w-[70%]">
+    <div className="relative h-[400px] overflow-hidden my-auto w-[80%]">
       <div
         className="absolute top-0 left-0 h-full w-[48px] z-10"
         style={{

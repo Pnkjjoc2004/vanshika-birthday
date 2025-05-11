@@ -21,8 +21,11 @@ const HomePage = () => {
       const targetDate = new Date(today.getFullYear(), 4, 19); // Month is 0-indexed, so 4 = May
 
       // Calculate if we should show content
-      // const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
-      const isMay19 = true;
+      const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
+
+      // Uncomment this line for testing
+      // const isMay19 = true;
+
       setIsVisible(isMay19);
 
       // Calculate time remaining until May 19
@@ -69,7 +72,7 @@ const HomePage = () => {
       <div className="h-dvh overflow-y-hidden">
         <Navbar />
         <div className="flex flex-col items-center justify-center h-full text-center p-4">
-          <h1 className="text-3xl text-white font-bold mb-8">
+          <h1 className="text-3xl text-fuchsia-400 font-bold mb-8">
             This surprise will be revealed on May 19th!
           </h1>
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -110,7 +113,7 @@ const HomePage = () => {
 
   // Original content to show on May 19th
   return (
-    <div className="h-dvh overflow-y-hidden">
+    <div className="h-dvh overflow-y-hidden customBackground">
       <Navbar />
       <Stepper
         initialStep={1}

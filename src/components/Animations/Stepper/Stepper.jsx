@@ -61,7 +61,7 @@ export default function Stepper({
     >
       <div
         className={`mx-auto w-full max-w-md rounded-4xl shadow-xl ${stepCircleContainerClassName}`}
-        style={{ border: "1px solid #222" }}
+        style={{ border: "1.5px solid #222" }}
       >
         <div
           className={`${stepContainerClassName} flex w-full items-center p-8`}
@@ -128,7 +128,7 @@ export default function Stepper({
               )}
               <button
                 onClick={isLastStep ? handleComplete : handleNext}
-                className="duration-350 flex items-center justify-center rounded-full bg-pink-500 py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:bg-pink-600 active:bg-pink-700 "
+                className="duration-350 flex items-center justify-center rounded-full bg-pink-500 py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:bg-pink-600 active:bg-pink-700"
                 {...nextButtonProps}
               >
                 {isLastStep ? "Start" : nextButtonText}
@@ -248,7 +248,7 @@ function StepIndicator({
         className="flex h-8 w-8 items-center justify-center rounded-full font-semibold"
       >
         {status === "complete" ? (
-          <CheckIcon className="h-4 w-4 text-black" />
+          <CheckIcon className="h-4 w-4 text-white" />
         ) : status === "active" ? (
           <div className="h-3 w-3 rounded-full bg-[#060606]" />
         ) : (
