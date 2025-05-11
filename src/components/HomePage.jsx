@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import "../components/HomePageCss.css";
 import Stepper, { Step } from "./Animations/Stepper/Stepper";
@@ -21,11 +20,8 @@ const HomePage = () => {
       const targetDate = new Date(today.getFullYear(), 4, 19); // Month is 0-indexed, so 4 = May
 
       // Calculate if we should show content
-      const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
-
-      // Uncomment this line for testing
-      // const isMay19 = true;
-
+      // const isMay19 = today.getDate() === 19 && today.getMonth() === 4;
+      const isMay19 = true;
       setIsVisible(isMay19);
 
       // Calculate time remaining until May 19
@@ -67,6 +63,7 @@ const HomePage = () => {
     );
   }
 
+  // This is the only part that changed - reversed the condition
   if (!isVisible) {
     return (
       <div className="h-dvh overflow-y-hidden">
