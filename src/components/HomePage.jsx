@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../components/HomePageCss.css";
 import Stepper, { Step } from "./Animations/Stepper/Stepper";
 import Navbar from "./Navbar";
+import MobilePopup from "./MobilePopup";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +13,22 @@ const HomePage = () => {
     seconds: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showMobilePopup, setShowMobilePopup] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkDevice = () => {
+      const mobile = window.innerWidth < 768; // Common breakpoint for mobile devices
+      setIsMobile(mobile);
+      setShowMobilePopup(mobile);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
 
   useEffect(() => {
     const checkDate = () => {
@@ -61,20 +78,18 @@ const HomePage = () => {
     );
   }
 
-  // This is the only part that changed - reversed the condition
-  if (!isVisible) {
-    return (
-      <div className="h-dvh overflow-y-hidden">
-        <Navbar />
+  const renderMainContent = () => {
+    if (!isVisible) {
+      return (
         <div className="flex flex-col items-center justify-center h-full text-center p-4">
-          <h1 className="text-3xl text-fuchsia-400 font-bold mb-8">
+          <h1 className="text-3xl text-white font-bold mb-8">
             This surprise will be revealed on May 19th!
           </h1>
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-2xl text-white font-semibold mb-4">
               Countdown to the surprise:
             </h2>
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center">
               <div className="bg-gray-700 p-3 rounded-md w-24">
                 <div className="text-3xl text-white font-bold">
                   {timeRemaining.days}
@@ -102,14 +117,11 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
 
-  // Original content to show on May 19th
-  return (
-    <div className="h-dvh overflow-y-hidden customBackground">
-      <Navbar />
+    // Original content to show on May 19th
+    return (
       <Stepper
         initialStep={1}
         onStepChange={(step) => {
@@ -151,6 +163,18 @@ const HomePage = () => {
           <p className="text-lg text-white font-bold">You made it!</p>
         </Step>
       </Stepper>
+    );
+  };
+
+  return (
+    <div className="h-dvh overflow-y-hidden customBackground">
+      <Navbar />
+      {renderMainContent()}
+
+      {/* Mobile popup */}
+      {showMobilePopup && (
+        <MobilePopup onClose={() => setShowMobilePopup(false)} />
+      )}
     </div>
   );
 };

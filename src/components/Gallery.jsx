@@ -121,14 +121,14 @@ const Gallery = () => {
         </div>
 
         {/* Headings */}
-        <h2 className="text-center text-white text-lg mt-4">
+        <h2 className="text-center text-black text-lg mt-4">
           Hover over the image/video to pause <br />
           <span className="bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent text-[17px]">
             I miss you
           </span>{" "}
           Apni memories kuch hai he nhi
           <br />
-          <span className="text-amber-50 text-sm">
+          <span className="text-slate-500 text-sm">
             Me to timewaste hu na tere liye.
           </span>
         </h2>
