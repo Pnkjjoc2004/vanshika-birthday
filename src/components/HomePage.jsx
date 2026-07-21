@@ -23,7 +23,7 @@ const getTimeRemaining = () => {
 
 const HomePage = () => {
   const [isRevealed, setIsRevealed] = useState(
-    () => Date.now() >= REVEAL_DATE.getTime()
+    () => Date.now() >= REVEAL_DATE.getTime(),
   );
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
