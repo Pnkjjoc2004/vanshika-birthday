@@ -7,32 +7,15 @@ import {
   useTransform,
 } from "framer-motion";
 
-const IMGS = [
-  "https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1495103033382-fe343886b671?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1506781961370-37a89d6b3095?q=80&w=3264&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1599576838688-8a6c11263108?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1494094892896-7f14a4433b7a?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1664910706524-e783eed89e71?q=80&w=3869&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1503788311183-fa3bf9c4bc32?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1585970480901-90d6bb2a48b5?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-];
-
-// Sample data structure for mixed media content
-const DEFAULT_CONTENT = IMGS.map((url) => ({ type: "image", url }));
-
 const RollingGallery = ({
   autoplay = false,
   pauseOnHover = false,
   content = [],
 }) => {
-  // Use provided content or default to images array
-  const galleryContent = content.length > 0 ? content : DEFAULT_CONTENT;
+  const galleryContent = content;
 
   const [isScreenSizeSm, setIsScreenSizeSm] = useState(
-    window.innerWidth <= 640
+    window.innerWidth <= 640,
   );
   useEffect(() => {
     const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
@@ -40,28 +23,38 @@ const RollingGallery = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 3D geometry
-  const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
-  const faceCount = galleryContent.length;
-  const faceWidth = (cylinderWidth / faceCount) * 1.5;
-  const radius = cylinderWidth / (2 * Math.PI);
+  // The actual square size of each card
+  const cardSize = isScreenSizeSm ? 160 : 220;
+  const cardGap = isScreenSizeSm ? 20 : 32;
 
-  // Framer Motion
+  const faceCount = galleryContent.length || 1;
+  const faceWidth = cardSize + cardGap;
+
+  // Radius of the circle each card sits on, spaced evenly by faceWidth.
+  const radius = faceWidth / (2 * Math.tan(Math.PI / faceCount));
+
+  // KEY FIX: perspective must scale with radius, or the 3D transform turns
+  // into a fisheye/zoom effect instead of a gentle curved wall. A fixed
+  // 1200px perspective only looks right for a small radius; with many
+  // items (large radius) it has to grow to match, roughly 2.5-3x radius.
+  const perspective = Math.max(1200, radius * 2.6);
+
+  const cylinderWidth = Math.max(radius * 2 * Math.PI, faceWidth * faceCount);
+
   const dragFactor = 0.05;
   const rotation = useMotionValue(0);
   const controls = useAnimation();
 
-  // Convert rotation -> 3D transform
   const transform = useTransform(
     rotation,
-    (val) => `rotate3d(0,1,0,${val}deg)`
+    (val) => `rotate3d(0,1,0,${val}deg)`,
   );
 
   const startInfiniteSpin = (startAngle) => {
     controls.start({
       rotateY: [startAngle, startAngle - 360],
       transition: {
-        duration: 60, // ⬅️ slower spin
+        duration: 80,
         ease: "linear",
         repeat: Infinity,
       },
@@ -110,40 +103,49 @@ const RollingGallery = ({
     }
   };
 
-  // Function to render media item based on type
   const renderMediaItem = (item, index) => {
-    const commonClasses =
-      "pointer-events-none h-[150px] w-[300px] rounded-[15px] border-[3px] border-white object-cover transition-transform duration-300 ease-out group-hover:scale-105 sm:h-[200px] sm:w-[500px]";
+    const mediaStyle = {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center",
+      display: "block",
+    };
 
-    // For images
+    const commonClasses =
+      "pointer-events-none rounded-[1.2rem] border border-pink-200/30 bg-gradient-to-br from-white/20 via-rose-100/15 to-amber-100/20 shadow-[0_20px_60px_-20px_rgba(236,72,153,0.45)] ring-1 ring-white/10 backdrop-blur-md transition-all duration-500 ease-out group-hover:scale-105 group-hover:border-pink-300/70 group-hover:shadow-[0_0_35px_-8px_rgba(244,114,182,0.55)]";
+
     if (!item.type || item.type === "image") {
       return (
         <img
           src={item.url || item}
           alt={`gallery-item-${index}`}
           className={commonClasses}
+          style={mediaStyle}
+          draggable={false}
         />
       );
     }
 
-    // For videos
     if (item.type === "video") {
       return (
         <video
           src={item.url}
-          muted
+          muted={item.muted ?? true}
           loop
           autoPlay={item.autoplay ?? true}
           controls={item.controls ?? false}
           className={commonClasses}
+          style={mediaStyle}
+          draggable={false}
         />
       );
     }
 
-    // Fallback for unknown types
     return (
       <div
         className={`${commonClasses} flex items-center justify-center bg-gray-800`}
+        style={mediaStyle}
       >
         <span className="text-white text-center">Unsupported Media</span>
       </div>
@@ -151,23 +153,16 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[400px] overflow-hidden my-auto w-[80%]">
-      <div
-        className="absolute top-0 left-0 h-full w-[48px] z-10"
-        style={{
-          background:
-            "linear-gradient(to left, rgba(0,0,0,0) 0%, #060606 100%)",
-        }}
-      />
-      <div
-        className="absolute top-0 right-0 h-full w-[48px] z-10"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(0,0,0,0) 0%, #060606 100%)",
-        }}
-      />
+    <div className="relative mx-auto my-auto h-[420px] w-full overflow-hidden">
+      <div className="absolute inset-x-0 top-1/2 h-40 -translate-y-1/2 rounded-full bg-pink-500/10 blur-3xl" />
 
-      <div className="flex h-full items-center justify-center [perspective:1000px] [transform-style:preserve-3d]">
+      <div
+        className="flex h-full items-center justify-center"
+        style={{
+          perspective: `${perspective}px`,
+          transformStyle: "preserve-3d",
+        }}
+      >
         <motion.div
           drag="x"
           dragElastic={0}
@@ -183,14 +178,15 @@ const RollingGallery = ({
             width: cylinderWidth,
             transformStyle: "preserve-3d",
           }}
-          className="flex min-h-[200px] cursor-grab items-center justify-center [transform-style:preserve-3d]"
+          className="flex min-h-[200px] cursor-grab active:cursor-grabbing items-center justify-center"
         >
           {galleryContent.map((item, i) => (
             <div
               key={i}
-              className="group absolute flex h-fit items-center justify-center p-[8%] [backface-visibility:hidden] md:p-[6%]"
+              className="group absolute flex items-center justify-center [backface-visibility:hidden]"
               style={{
-                width: `${faceWidth}px`,
+                width: `${cardSize}px`,
+                height: `${cardSize}px`,
                 transform: `rotateY(${
                   (360 / faceCount) * i
                 }deg) translateZ(${radius}px)`,

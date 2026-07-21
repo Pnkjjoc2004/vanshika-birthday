@@ -29,16 +29,16 @@ const LoveHeart = () => {
     };
   }, [showConfetti]);
 
-  // const drawHeart = (ctx) => {
-  //   ctx.beginPath();
-  //   ctx.moveTo(0, -5);
-  //   ctx.bezierCurveTo(5, -15, 15, -15, 15, -5);
-  //   ctx.bezierCurveTo(15, 5, 5, 10, 0, 15);
-  //   ctx.bezierCurveTo(-5, 10, -15, 5, -15, -5);
-  //   ctx.bezierCurveTo(-15, -15, -5, -15, 0, -5);
-  //   ctx.closePath();
-  //   ctx.fill();
-  // };
+  const drawHeart = (ctx) => {
+    ctx.beginPath();
+    ctx.moveTo(0, -5);
+    ctx.bezierCurveTo(5, -15, 15, -15, 15, -5);
+    ctx.bezierCurveTo(15, 5, 5, 10, 0, 15);
+    ctx.bezierCurveTo(-5, 10, -15, 5, -15, -5);
+    ctx.bezierCurveTo(-15, -15, -5, -15, 0, -5);
+    ctx.closePath();
+    ctx.fill();
+  };
 
   return (
     <>
@@ -48,7 +48,7 @@ const LoveHeart = () => {
           height={windowSize.height}
           numberOfPieces={150} // Number of particles
           colors={["#ff4d6d", "#ffffff"]} // Red & white colors
-          // drawShape={(ctx) => drawHeart(ctx)}
+          drawShape={(ctx) => drawHeart(ctx)}
         />
       )}
       <div className="love">
