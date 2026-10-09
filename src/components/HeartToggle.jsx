@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import "./LoveHeart.css"; // Import the CSS file
 import Confetti from "react-confetti";
 
-const LoveHeart = () => {
-  const [checked, setChecked] = useState(false);
+const LoveHeart = ({ isChecked, onToggle }) => {
+  const [checked, setChecked] = useState(isChecked || false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  useEffect(() => {
+    if (isChecked !== undefined) {
+      setChecked(isChecked);
+    }
+  }, [isChecked]);
 
   useEffect(() => {
     // Stop confetti after 5 seconds
@@ -40,6 +46,15 @@ const LoveHeart = () => {
     ctx.fill();
   };
 
+  const handleToggle = (e) => {
+    const nextState = e.target.checked;
+    setChecked(nextState);
+    setShowConfetti(nextState);
+    if (onToggle) {
+      onToggle(nextState);
+    }
+  };
+
   return (
     <>
       {showConfetti && (
@@ -56,8 +71,7 @@ const LoveHeart = () => {
           id="switch"
           type="checkbox"
           checked={checked}
-          onChange={() => setChecked(!checked)}
-          onClick={() => setShowConfetti(!showConfetti)}
+          onChange={handleToggle}
         />
         <label className="love-heart" htmlFor="switch">
           <i className="left"></i>
@@ -66,7 +80,7 @@ const LoveHeart = () => {
           <div className="round"></div>
         </label>
         <h4 className="text-center ml-10 text-white text-sm animate-bounce">
-          Toggle me
+          Toggle me first 😭
         </h4>
       </div>
     </>

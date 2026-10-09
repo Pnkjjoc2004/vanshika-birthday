@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import LetterPopup from "../LetterPopup";
 import PasscodeLockScreen from "../PasscodeLockScreen";
 
-const NAME = "Shubhangi";
+const NAME = "Vanshika";
 const SUBTITLE =
   "Wishing you a day full of smiles and laughter. May this year bring you all the happiness you deserve.";
 

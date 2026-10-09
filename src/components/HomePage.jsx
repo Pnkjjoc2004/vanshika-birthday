@@ -22,6 +22,7 @@ const getTimeRemaining = () => {
 };
 
 const HomePage = () => {
+  const [isHeartToggled, setIsHeartToggled] = useState(false);
   const [isRevealed, setIsRevealed] = useState(
     () => Date.now() >= REVEAL_DATE.getTime(),
   );
@@ -158,6 +159,7 @@ const HomePage = () => {
     return (
       <Stepper
         initialStep={1}
+        isNextDisabled={!isHeartToggled}
         onStepChange={(step) => {
           console.log(step);
         }}
@@ -167,7 +169,7 @@ const HomePage = () => {
       >
         <Step>
           <h2 className="text-xl text-white font-bold">
-            Hey Shubhangi!!🌟 It&apos;s your special day.
+            Hey Vanshika!!🌟 It&apos;s your special day.
           </h2>
         </Step>
         <Step>
@@ -202,7 +204,12 @@ const HomePage = () => {
 
   return (
     <div className="h-dvh overflow-y-hidden customBackground">
-      {isRevealed && <Navbar />}
+      {isRevealed && (
+        <Navbar
+          isHeartToggled={isHeartToggled}
+          onHeartToggle={setIsHeartToggled}
+        />
+      )}
       {renderMainContent()}
 
       {/* Mobile popup */}

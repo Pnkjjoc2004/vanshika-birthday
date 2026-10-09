@@ -18,6 +18,7 @@ export default function Stepper({
   nextButtonText = "Continue",
   disableStepIndicators = false,
   renderStepIndicator,
+  isNextDisabled = false,
   ...rest
 }) {
   const [currentStep, setCurrentStep] = useState(initialStep);
@@ -27,6 +28,13 @@ export default function Stepper({
   const isCompleted = currentStep > totalSteps;
   const isLastStep = currentStep === totalSteps;
   const navigate = useNavigate();
+
+  const {
+    disabled: nextDisabledFromProps,
+    className: nextClassNameFromProps,
+    ...restNextButtonProps
+  } = nextButtonProps;
+  const isNextBtnDisabled = isNextDisabled || nextDisabledFromProps;
 
   const updateStep = (newStep) => {
     setCurrentStep(newStep);
@@ -42,6 +50,7 @@ export default function Stepper({
   };
 
   const handleNext = () => {
+    if (isNextBtnDisabled) return;
     if (!isLastStep) {
       setDirection(1);
       updateStep(currentStep + 1);
@@ -49,6 +58,7 @@ export default function Stepper({
   };
 
   const handleComplete = () => {
+    if (isNextBtnDisabled) return;
     setDirection(1);
     updateStep(totalSteps + 1);
     navigate("/balloon-room");
@@ -76,6 +86,7 @@ export default function Stepper({
                     step: stepNumber,
                     currentStep,
                     onStepClick: (clicked) => {
+                      if (isNextBtnDisabled && clicked > currentStep) return;
                       setDirection(clicked > currentStep ? 1 : -1);
                       updateStep(clicked);
                     },
@@ -86,6 +97,7 @@ export default function Stepper({
                     disableStepIndicators={disableStepIndicators}
                     currentStep={currentStep}
                     onClickStep={(clicked) => {
+                      if (isNextBtnDisabled && clicked > currentStep) return;
                       setDirection(clicked > currentStep ? 1 : -1);
                       updateStep(clicked);
                     }}
@@ -127,9 +139,20 @@ export default function Stepper({
                 </button>
               )}
               <button
-                onClick={isLastStep ? handleComplete : handleNext}
-                className="duration-350 flex items-center justify-center rounded-full bg-pink-500 py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:bg-pink-600 active:bg-pink-700"
-                {...nextButtonProps}
+                onClick={
+                  isNextBtnDisabled
+                    ? undefined
+                    : isLastStep
+                    ? handleComplete
+                    : handleNext
+                }
+                disabled={isNextBtnDisabled}
+                className={`duration-350 flex items-center justify-center rounded-full bg-pink-500 py-1.5 px-3.5 font-medium tracking-tight text-white transition ${
+                  isNextBtnDisabled
+                    ? "opacity-50 cursor-not-allowed pointer-events-none"
+                    : "hover:bg-pink-600 active:bg-pink-700"
+                } ${nextClassNameFromProps || ""}`}
+                {...restNextButtonProps}
               >
                 {isLastStep ? "Start" : nextButtonText}
               </button>

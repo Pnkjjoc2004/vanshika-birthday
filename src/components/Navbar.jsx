@@ -1,10 +1,10 @@
 import LoveHeart from "./HeartToggle";
 
-const Navbar = () => {
+const Navbar = ({ isHeartToggled, onHeartToggle }) => {
   return (
     <>
       <div className="flex justify-center items-center pt-15 md:mb-0 ">
-        <LoveHeart />
+        <LoveHeart isChecked={isHeartToggled} onToggle={onHeartToggle} />
       </div>
     </>
   );
