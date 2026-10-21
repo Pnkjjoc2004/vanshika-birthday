@@ -200,33 +200,34 @@ const BalloonRoom = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(5,2,4,0.55)_100%)]" />
 
       {/* Nav */}
-      <div className="relative z-20 flex justify-between px-4 pt-4">
+      <div className="relative z-20 flex items-center justify-between px-3 sm:px-6 pt-3 sm:pt-4">
         <Link
-          className="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
+          className="relative inline-flex h-9 sm:h-11 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
           to={"/"}
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#d4af7a_100%)]"></span>
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-[#170611] px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-[#170611] px-3.5 sm:px-6 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl gap-1.5 sm:gap-2">
             Home
           </span>
         </Link>
-        <div className="flex gap-3">
+        <div className="flex gap-2 sm:gap-3">
           <Link
-            className="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
+            className="relative inline-flex h-9 sm:h-11 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
             to={"/birthday-cake"}
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#d4af7a_100%)]"></span>
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-[#170611] px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
-              <span className="mr-2">🎂</span>
-              Cake ceremony
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-[#170611] px-3 sm:px-6 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl gap-1.5 sm:gap-2">
+              <span>🎂</span>
+              <span className="hidden sm:inline">Cake ceremony</span>
+              <span className="sm:hidden">Cake</span>
             </span>
           </Link>
 
           <Link
-            className="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
+            className="relative inline-flex h-9 sm:h-11 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
             to={"/gallery"}
           >
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg border border-white/15 bg-white/5 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 sm:px-6 text-xs sm:text-sm font-medium text-white backdrop-blur-3xl gap-1.5 sm:gap-2">
               Gallery
             </span>
           </Link>
@@ -236,11 +237,11 @@ const BalloonRoom = () => {
       {/* Happy Birthday Text */}
       {showText && (
         <div
-          className="absolute left-1/2 top-[26%] z-10 w-full -translate-x-1/2 px-4 text-center md:top-[30%]"
+          className="absolute left-1/2 top-[18%] sm:top-[24%] md:top-[28%] z-10 w-full -translate-x-1/2 px-3 text-center"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1"
+            className="flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-3 gap-y-1"
             variants={container}
             initial="hidden"
             animate="show"
@@ -249,7 +250,7 @@ const BalloonRoom = () => {
               <motion.span
                 key={i}
                 variants={wordVariant}
-                className="text-4xl md:text-6xl font-semibold italic tracking-wide"
+                className="text-3xl sm:text-5xl md:text-6xl font-semibold italic tracking-wide"
                 style={{
                   fontFamily: "'Playfair Display', serif",
                   background:
@@ -267,7 +268,7 @@ const BalloonRoom = () => {
           </motion.div>
 
           <motion.p
-            className="mx-auto mt-4 max-w-md text-base italic text-pink-100/80 md:text-lg"
+            className="mx-auto mt-3 sm:mt-4 max-w-sm sm:max-w-md text-sm sm:text-base md:text-lg italic text-pink-100/80 px-2"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.9, ease: "easeOut" }}

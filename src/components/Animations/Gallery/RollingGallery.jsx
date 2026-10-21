@@ -14,18 +14,28 @@ const RollingGallery = ({
 }) => {
   const galleryContent = content;
 
-  const [isScreenSizeSm, setIsScreenSizeSm] = useState(
-    window.innerWidth <= 640,
-  );
+  const [screenSize, setScreenSize] = useState(() => ({
+    isMobile: typeof window !== "undefined" ? window.innerWidth <= 480 : false,
+    isTablet:
+      typeof window !== "undefined"
+        ? window.innerWidth > 480 && window.innerWidth <= 768
+        : false,
+  }));
+
   useEffect(() => {
-    const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
+    const handleResize = () => {
+      setScreenSize({
+        isMobile: window.innerWidth <= 480,
+        isTablet: window.innerWidth > 480 && window.innerWidth <= 768,
+      });
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // The actual square size of each card
-  const cardSize = isScreenSizeSm ? 160 : 220;
-  const cardGap = isScreenSizeSm ? 20 : 32;
+  const cardSize = screenSize.isMobile ? 135 : screenSize.isTablet ? 165 : 220;
+  const cardGap = screenSize.isMobile ? 16 : screenSize.isTablet ? 22 : 32;
 
   const faceCount = galleryContent.length || 1;
   const faceWidth = cardSize + cardGap;
@@ -153,7 +163,7 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative mx-auto my-auto h-[420px] w-full overflow-hidden">
+    <div className="relative mx-auto my-auto h-[320px] sm:h-[380px] md:h-[420px] w-full overflow-hidden">
       <div className="absolute inset-x-0 top-1/2 h-40 -translate-y-1/2 rounded-full bg-pink-500/10 blur-3xl" />
 
       <div

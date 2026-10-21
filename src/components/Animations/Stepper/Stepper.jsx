@@ -66,15 +66,14 @@ export default function Stepper({
 
   return (
     <div
-      className="flex min-h-full flex-1 flex-col items-center justify-center p-4 sm:aspect-[4/3] md:aspect-[2/1]"
+      className="flex min-h-full flex-1 flex-col items-center justify-center p-2 sm:p-4 w-full"
       {...rest}
     >
       <div
-        className={`mx-auto w-full max-w-md rounded-4xl shadow-xl ${stepCircleContainerClassName}`}
-        style={{ border: "1.5px solid #222" }}
+        className={`mx-auto w-full max-w-md rounded-2xl sm:rounded-3xl shadow-2xl bg-black/60 backdrop-blur-xl border border-white/20 ${stepCircleContainerClassName}`}
       >
         <div
-          className={`${stepContainerClassName} flex w-full items-center p-8`}
+          className={`${stepContainerClassName} flex w-full items-center justify-between p-4 sm:p-8`}
         >
           {stepsArray.map((_, index) => {
             const stepNumber = index + 1;
@@ -114,12 +113,12 @@ export default function Stepper({
           isCompleted={isCompleted}
           currentStep={currentStep}
           direction={direction}
-          className={`space-y-2 px-8 ${contentClassName}`}
+          className={`space-y-2 px-4 sm:px-8 ${contentClassName}`}
         >
           {stepsArray[currentStep - 1]}
         </StepContentWrapper>
         {!isCompleted && (
-          <div className={`px-8 pb-8 ${footerClassName}`}>
+          <div className={`px-4 sm:px-8 pb-6 sm:pb-8 ${footerClassName}`}>
             <div
               className={`mt-10 flex ${
                 currentStep !== 1 ? "justify-between" : "justify-end"
@@ -234,7 +233,7 @@ const stepVariants = {
 };
 
 export function Step({ children }) {
-  return <div className="px-8">{children}</div>;
+  return <div className="px-2 sm:px-4">{children}</div>;
 }
 
 function StepIndicator({

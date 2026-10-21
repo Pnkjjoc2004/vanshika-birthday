@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "../components/HomePageCss.css";
 import Stepper, { Step } from "./Animations/Stepper/Stepper";
 import Navbar from "./Navbar";
-import MobilePopup from "./MobilePopup";
 
 // The actual reveal date. Change the year/month/day here if the date moves.
 const REVEAL_DATE = new Date("2026-07-22T00:00:00");
@@ -27,23 +26,7 @@ const HomePage = () => {
     () => Date.now() >= REVEAL_DATE.getTime(),
   );
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  const [showMobilePopup, setShowMobilePopup] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining());
-
-  // Check if device is mobile
-  useEffect(() => {
-    const checkDevice = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      setShowMobilePopup(mobile);
-    };
-
-    checkDevice();
-    window.addEventListener("resize", checkDevice);
-
-    return () => window.removeEventListener("resize", checkDevice);
-  }, []);
 
   // Keep the countdown ticking until the reveal date arrives.
   useEffect(() => {
@@ -202,19 +185,16 @@ const HomePage = () => {
   };
 
   return (
-    <div className="h-dvh overflow-y-hidden customBackground">
+    <div className="min-h-dvh overflow-x-hidden overflow-y-auto customBackground flex flex-col justify-start pb-6">
       {isRevealed && (
         <Navbar
           isHeartToggled={isHeartToggled}
           onHeartToggle={setIsHeartToggled}
         />
       )}
-      {renderMainContent()}
-
-      {/* Mobile popup */}
-      {showMobilePopup && (
-        <MobilePopup onClose={() => setShowMobilePopup(false)} />
-      )}
+      <div className="flex-1 flex items-center justify-center w-full px-2 sm:px-4">
+        {renderMainContent()}
+      </div>
     </div>
   );
 };

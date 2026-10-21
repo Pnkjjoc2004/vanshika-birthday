@@ -82,7 +82,7 @@ const LoveHeart = ({ isChecked, onToggle }) => {
           <div className="round"></div>
         </label>
         <h4
-          className={`text-center ml-10 text-sm font-bold tracking-wide animate-bounce inline-block px-3.5 py-1.5 rounded-full backdrop-blur-md shadow-lg border transition-colors duration-300 ${
+          className={`text-center ml-4 sm:ml-8 text-xs sm:text-sm font-bold tracking-wide animate-bounce inline-block px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md shadow-lg border transition-colors duration-300 ${
             checked
               ? "bg-rose-950/85 border-pink-400/40 text-pink-100 shadow-rose-950/50"
               : "bg-neutral-900/85 border-white/25 text-white shadow-black/50"
