@@ -75,7 +75,7 @@ const BalloonRoom = () => {
       {showPasscode && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-pink-950/80 backdrop-blur-sm">
           <PasscodeLockScreen
-            correctCode="1522"
+            correctCode="0521"
             onComplete={() => {
               setShowPasscode(false);
               setShowLetter(true);
@@ -87,40 +87,40 @@ const BalloonRoom = () => {
       {showLetter && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
           <div className="relative mx-auto w-full max-w-xl animate-[fadeIn_0.8s_ease-out]">
+            {/* Close button */}
+            <button
+              onClick={() => setShowLetter(false)}
+              className="absolute -right-2 -top-2 sm:-right-3 sm:-top-3 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-white text-lg text-slate-400 shadow-md transition hover:text-slate-600 hover:scale-105"
+            >
+              ✕
+            </button>
+
+            {/* Wax seal decoration */}
+            <div className="absolute -left-4 top-10 z-20 hidden sm:block pointer-events-none">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 shadow-lg">
+                <span className="text-xl font-serif text-white/90">V</span>
+              </div>
+              <div className="mx-auto mt-1 h-8 w-0.5 bg-gradient-to-b from-red-600 to-transparent" />
+            </div>
+
             {/* Envelope flap shadow */}
             <div className="absolute -top-2 left-4 right-4 h-6 rounded-t-lg bg-amber-100/80 shadow-inner" />
 
             <div
-              className="relative rounded-sm bg-white p-0 shadow-2xl"
+              className="relative rounded-sm bg-white p-0 shadow-2xl max-h-[85vh] overflow-y-auto [scrollbar-width:thin] [scrollbar-color:#fbcfe8_transparent]"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(transparent, transparent 31px, #f0e6d3 31px, #f0e6d3 32px)",
-                backgroundSize: "100% 32px",
-                lineHeight: "32px",
+                  "repeating-linear-gradient(transparent, transparent 27px, #f0e6d3 27px, #f0e6d3 28px)",
+                backgroundSize: "100% 28px",
+                lineHeight: "28px",
                 paddingTop: 0,
               }}
             >
-              {/* Close button */}
-              <button
-                onClick={() => setShowLetter(false)}
-                className="absolute -right-3 -top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white text-lg text-slate-400 shadow-md transition hover:text-slate-600"
-              >
-                ✕
-              </button>
-
-              {/* Wax seal decoration */}
-              <div className="absolute -left-4 top-12 hidden sm:block">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-700 shadow-lg">
-                  <span className="text-xl font-serif text-white/90">S</span>
-                </div>
-                <div className="mx-auto mt-1 h-8 w-0.5 bg-gradient-to-b from-red-600 to-transparent" />
-              </div>
-
               {/* Letter header with romantic border */}
-              <div className="border-b-2 border-dotted border-pink-200 px-10 pb-3 pt-10 text-center">
-                <div className="mb-2 text-4xl">💖</div>
+              <div className="border-b-2 border-dotted border-pink-200 px-6 sm:px-10 pb-2 pt-6 text-center">
+                <div className="mb-1 text-3xl">💖</div>
                 <h3
-                  className="text-3xl font-bold text-rose-700"
+                  className="text-2xl sm:text-3xl font-bold text-rose-700"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   To the Love of My Life
@@ -129,45 +129,61 @@ const BalloonRoom = () => {
 
               {/* Letter body with stationery lines */}
               <div
-                className="px-10 pb-8 pt-4"
+                className="px-6 sm:px-10 pb-6 pt-3"
                 style={{ fontFamily: "'Caveat', 'Brush Script MT', cursive" }}
               >
-                <div className="space-y-1 text-xl leading-[32px] text-amber-900">
-                  <p className="indent-8">
-                    Happy Happy Birthday to my everything.
+                <div className="space-y-1 text-lg sm:text-[19px] leading-[28px] text-amber-900">
+                  <p className="indent-6 sm:indent-8">
+                    Happy Happy Birthday to the most special person in my life.
                   </p>
-                  <p className="indent-8">
-                    I wanted to take a moment to tell you how incredibly special
-                    you are to me. Jabse aap meri life mein aaye ho, everything
-                    has changed. Mujhe pehle kabhi pata nahi tha ki real love
-                    kya hota hai, aur koi kisi ki itni care bhi kar sakta hai.
-                    Aapne mujhe itna pyaar diya hai ki kabhi kabhi lagta hai
-                    words bhi kam pad jaate hain. Aapke saath har chhoti si baat
-                    bhi beautiful lagti hai, aur aap hi meri smile aur meri
-                    happiest place ho. Aur apka gussa cherry on top.
+
+                  <p className="indent-6 sm:indent-8">
+                    I wanted to tell you how incredibly special you are to me.
+                    Jabse aap meri life mein aaye ho, everything feels more
+                    beautiful. I never felt this much love and care for anyone
+                    before. Mujh jaise awara ko control krne k lie thankuu. 🥹❤️
+                    Aapse itna pyaar hai ki kabhi kabhi words bhi kam pad jaate
+                    hain. Aap meri smile, meri happiest place ho, aur aapka vo
+                    thora sa kalesh toh cherry on top hai. 😂❤️🫶🏻
                   </p>
-                  <p className="indent-8">
-                    Pehle future ke baare mein sochta tha toh bas goals aur
-                    dreams dikhte the. Ab jab future imagine karta hoon, toh
-                    usme aap hote ho. Aapke saath ek chhoti si happy life, bahut
-                    saari memories aur lifetime tak saath rehna hai.
+
+                  <p className="indent-6 sm:indent-8">
+                    I don't just want you in my happiest moments, I want you in
+                    every version of my life — in my chaos, my silence, my
+                    struggles, and all the little moments in between. Bas aise
+                    hi hamesha mere saath rehna, kyunki mera dil ab ghar jaisa
+                    feel karta hai toh sirf aapke paas. ❤️‍🩹💗
                   </p>
+
+                  <div className="pt-2 text-center leading-[30px]">
+                    <p>
+                      मेरे सबसे खूबसूरत एहसास हो तुम
+                      <br />
+                      कभी सोचो कितने ख़ास हो तुम
+                      <br />
+                      रह जा बनके मेरी तुझको ही चाहू मैं सदा
+                      <br />
+                      इक दूजे से ना हो हम जुदा
+                      <br />
+                      मेरी बनोगी क्या? ❤️🥹
+                    </p>
+                  </div>
                 </div>
 
-                <div className="mt-6 border-t border-pink-100 pt-4 text-right">
+                <div className="mt-4 border-t border-pink-100 pt-3 text-right">
                   <p
-                    className="text-xl font-semibold text-rose-600"
+                    className="text-lg sm:text-xl font-semibold text-rose-600"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     Forever yours,
                   </p>
                   <p
-                    className="text-lg text-rose-400"
+                    className="text-base sm:text-lg text-rose-400"
                     style={{
                       fontFamily: "'Caveat', 'Brush Script MT', cursive",
                     }}
                   >
-                    Harshit 🐨{" "}
+                    Pinki 🐨{" "}
                   </p>
                 </div>
               </div>

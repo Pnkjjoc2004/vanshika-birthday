@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync-images": "node scripts/sync-cloudinary.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

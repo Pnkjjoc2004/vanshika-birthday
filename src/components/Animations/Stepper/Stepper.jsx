@@ -143,8 +143,8 @@ export default function Stepper({
                   isNextBtnDisabled
                     ? undefined
                     : isLastStep
-                    ? handleComplete
-                    : handleNext
+                      ? handleComplete
+                      : handleNext
                 }
                 disabled={isNextBtnDisabled}
                 className={`duration-350 flex items-center justify-center rounded-full bg-pink-500 py-1.5 px-3.5 font-medium tracking-tight text-white transition ${
@@ -247,8 +247,8 @@ function StepIndicator({
     currentStep === step
       ? "active"
       : currentStep < step
-      ? "inactive"
-      : "complete";
+        ? "inactive"
+        : "complete";
 
   const handleClick = () => {
     if (step !== currentStep && !disableStepIndicators) onClickStep(step);

@@ -1,40 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import CircularCarousel from "./CircularCarousel";
+import RollingGallery from "./Animations/Gallery/RollingGallery";
 
 import { Link } from "react-router-dom";
-import Image1 from "../assets/image1.jpg";
-import Image2 from "../assets/image2.jpg";
-import Image3 from "../assets/image3.jpg";
-import Image5 from "../assets/image5.jpg";
-import Image6 from "../assets/image6.jpg";
-import Image7 from "../assets/image7.jpg";
-import Image8 from "../assets/image8.jpg";
-import Image9 from "../assets/image9.jpg";
-import Image10 from "../assets/image10.jpg";
-import Image11 from "../assets/image11.jpg";
-import Image12 from "../assets/image12.jpg";
-import Image13 from "../assets/image13.jpg";
-import Image14 from "../assets/image14.jpg";
-import Image15 from "../assets/image15.jpg";
-import Image16 from "../assets/image16.jpg";
 import Song from "../assets/memory.mp3";
+import Video1 from "../assets/vanshika/5ed8908e-b326-4b07-8dc5-84368316dd5a.MP4";
+import Video2 from "../assets/vanshika/43ef4380-0ec1-496b-aead-e099146d688c.MP4";
+import Video3 from "../assets/vanshika/123da3f3-d685-4665-87a6-bbbbf1263eaf.MP4";
+import { galleryItems } from "../data/galleryImages";
 
-const items = [
-  { src: Image1, alt: "Mist drifting through memories", title: "Forever", subtitle: "My Heart" },
-  { src: Image2, alt: "A beautiful smile", title: "Smile", subtitle: "Together" },
-  { src: Image3, alt: "Moments to remember", title: "Precious", subtitle: "Special Day" },
-  { src: Image5, alt: "Joyful moments together", title: "Laughter", subtitle: "Sweet Times" },
-  { src: Image6, alt: "Every glance and smile", title: "Magical", subtitle: "Unforgettable" },
-  { src: Image7, alt: "Days filled with love", title: "Pure Joy", subtitle: "Happiness" },
-  { src: Image8, alt: "Holding memories close", title: "Sparkle", subtitle: "With You" },
-  { src: Image9, alt: "Cherished always", title: "Warmth", subtitle: "Endless Love" },
-  { src: Image10, alt: "Moments of serenity", title: "Golden", subtitle: "Memories" },
-  { src: Image11, alt: "Smiling through every season", title: "Radiant", subtitle: "Always" },
-  { src: Image12, alt: "A gentle, beautiful spark", title: "Delight", subtitle: "Cherished" },
-  { src: Image13, alt: "Bright like sunshine", title: "Sunshine", subtitle: "Heartbeats" },
-  { src: Image14, alt: "Love without bounds", title: "Endless", subtitle: "You & Me" },
-  { src: Image15, alt: "Treasured pictures of us", title: "Beautiful", subtitle: "Forever" },
-  { src: Image16, alt: "Every moment with you is magic", title: "Treasured", subtitle: "Eternity" },
+const IMGS = [
+  { type: "video", url: Video1, autoplay: true, controls: false },
+  ...galleryItems.slice(0, 5).map((img) => ({ type: "image", url: img.src })),
+  { type: "video", url: Video2, autoplay: true, controls: false },
+  ...galleryItems.slice(5, 15).map((img) => ({ type: "image", url: img.src })),
+  { type: "video", url: Video3, autoplay: true, controls: false },
+  ...galleryItems.slice(15).map((img) => ({ type: "image", url: img.src })),
 ];
 
 // A short line that fades in beneath the title. Swap this for your own words.
@@ -215,7 +195,7 @@ const Gallery = () => {
             className="mt-2 text-2xl italic text-white/95 sm:text-4xl"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            A little glimpse of our beautiful moments
+            A little glimpse of my cutie 🫶🏻
           </h2>
           <div className="mx-auto mt-3 flex items-center justify-center gap-3 text-rose-300/60">
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-rose-300/50" />
@@ -244,33 +224,11 @@ const Gallery = () => {
         ) : (
           <div className="relative w-full max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-[0_0_80px_rgba(244,114,182,0.12)] backdrop-blur-xl sm:p-4">
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-pink-400/10 via-transparent to-amber-300/10" />
-            <div style={{ width: "100%", height: "560px", position: "relative" }}>
-              <CircularCarousel
-                items={items}
-                preset="cylinder"
-                intro="rise"
-                cardWidth={220}
-                aspectRatio={1}
-                speed={14}
-                captions={false}
-                gap={25}
-                tilt={-5}
-                curve={1}
-                perspective={2500}
-                autoplay="drift"
-                interval={3}
-                direction="left"
-                momentum={0.6}
-                snap
-                pauseOnHover
-                focusOnClick
-                draggable
-                parallax={0.3}
-                stretch={0.5}
-                fadeColor="#000000"
-                depthFade={0.55}
-                innerShade={0.6}
-                cornerRadius={12}
+            <div className="relative">
+              <RollingGallery
+                autoplay={true}
+                pauseOnHover={true}
+                content={IMGS}
               />
             </div>
           </div>

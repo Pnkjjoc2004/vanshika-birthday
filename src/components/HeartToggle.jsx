@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import "./LoveHeart.css"; // Import the CSS file
 import Confetti from "react-confetti";
@@ -62,7 +63,8 @@ const LoveHeart = ({ isChecked, onToggle }) => {
           width={windowSize.width}
           height={windowSize.height}
           numberOfPieces={150} // Number of particles
-          colors={["#ff4d6d", "#ffffff"]} // Red & white colors
+          colors={["#ff4d6d", "#ffffff"]} // Red
+          //  & white colors
           drawShape={(ctx) => drawHeart(ctx)}
         />
       )}
@@ -79,8 +81,14 @@ const LoveHeart = ({ isChecked, onToggle }) => {
           <i className="bottom"></i>
           <div className="round"></div>
         </label>
-        <h4 className="text-center ml-10 text-white text-sm animate-bounce">
-          Toggle me first 😭
+        <h4
+          className={`text-center ml-10 text-sm font-bold tracking-wide animate-bounce inline-block px-3.5 py-1.5 rounded-full backdrop-blur-md shadow-lg border transition-colors duration-300 ${
+            checked
+              ? "bg-rose-950/85 border-pink-400/40 text-pink-100 shadow-rose-950/50"
+              : "bg-neutral-900/85 border-white/25 text-white shadow-black/50"
+          }`}
+        >
+          {checked ? "Thank you!🫠🥳" : "Toggle me first 😭"}
         </h4>
       </div>
     </>
