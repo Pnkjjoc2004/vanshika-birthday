@@ -190,8 +190,7 @@ const HomePage = () => {
         </Step>
         <Step>
           <h2 className="text-xl text-white font-bold">
-            Before you begin, i want to say you are the best girl i have ever
-            met...
+            Before you begin, I just want to say that you’re the one I’ve always wanted to be with...
           </h2>
         </Step>
         <Step>
