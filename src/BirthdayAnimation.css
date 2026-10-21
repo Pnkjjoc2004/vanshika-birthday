@@ -8,7 +8,9 @@
 .birthdayText {
   text-align: center;
   font-family: "Cookie", cursive;
-  font-size: 45px;
+  font-size: clamp(26px, 6vw, 45px);
+  line-height: 1.2;
+  padding: 0 16px;
   z-index: 100;
   color: #be185d;
   position: relative;
@@ -83,7 +85,8 @@
   left: 4.5px;
 }
 
-.girl:hover .eyeball1 {
+.girl:hover .eyeball1,
+.girl.is-blowing .eyeball1 {
   animation: 4s see;
   -webkit-animation: 4s see;
 }
@@ -99,7 +102,8 @@
     left: 6.5px;
   }
 }
-.girl:hover .eyeball2 {
+.girl:hover .eyeball2,
+.girl.is-blowing .eyeball2 {
   animation: 4s seee;
   -webkit-animation: 4s seee;
 }
@@ -175,7 +179,8 @@
   border-bottom-right-radius: 70px;
   position: relative;
 }
-.girl:hover .mouth {
+.girl:hover .mouth,
+.girl.is-blowing .mouth {
   animation: 4s blow;
   -webkit-animation: 4s blow;
 }
@@ -383,7 +388,8 @@
   border-bottom-left-radius: 70px;
   border-bottom-right-radius: 70px;
 }
-.girl:hover .flame {
+.girl:hover .flame,
+.girl.is-blowing .flame {
   animation: 2s vanish forwards;
 }
 @keyframes vanish {
@@ -407,7 +413,8 @@
   bottom: 15px;
 }
 
-.girl:hover .flame1 {
+.girl:hover .flame1,
+.girl.is-blowing .flame1 {
   animation: 2s vanishh forwards;
 }
 

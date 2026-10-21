@@ -97,7 +97,7 @@ const Gallery = () => {
 
   return (
     <div
-      className="min-h-screen overflow-hidden bg-[radial-gradient(ellipse_at_top,_rgba(251,146,180,0.22),_transparent_45%),radial-gradient(ellipse_at_bottom,_rgba(212,163,115,0.16),_transparent_50%),linear-gradient(160deg,_#1a0510_0%,_#2b0a1f_35%,_#170611_65%,_#0c0308_100%)] text-white"
+      className="min-h-screen overflow-x-hidden overflow-y-auto bg-[radial-gradient(ellipse_at_top,_rgba(251,146,180,0.22),_transparent_45%),radial-gradient(ellipse_at_bottom,_rgba(212,163,115,0.16),_transparent_50%),linear-gradient(160deg,_#1a0510_0%,_#2b0a1f_35%,_#170611_65%,_#0c0308_100%)] text-white pb-8"
       style={{ fontFamily: "'Cormorant Garamond', serif" }}
     >
       {/* Ambient romantic keyframes */}
@@ -146,30 +146,31 @@ const Gallery = () => {
       </div>
 
       {/* Top bar */}
-      <div className="relative z-20 flex items-center justify-between px-5 py-5">
+      <div className="relative z-20 flex items-center justify-between px-3 sm:px-5 py-3 sm:py-5">
         <Link
           to={"/balloon-room"}
-          className="text-sm tracking-wide text-pink-200/80 transition-colors hover:text-white"
+          className="text-xs sm:text-sm tracking-wide text-pink-200/80 transition-colors hover:text-white"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
           ← Back
         </Link>
 
-        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md">
-          <span className="text-[11px] uppercase tracking-[0.35em] text-pink-200/80">
+        <div className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/10 bg-white/5 px-3 sm:px-4 py-1 sm:py-1.5 backdrop-blur-md">
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-pink-200/80">
             Our love story
           </span>
         </div>
 
         <button
           onClick={() => setIsPlaying((prev) => !prev)}
-          className="group relative rounded-full border border-white/10 bg-white/5 p-2.5 text-pink-100/80 transition-colors hover:text-white"
+          className="group relative rounded-full border border-white/10 bg-white/5 p-2 sm:p-2.5 text-pink-100/80 transition-colors hover:text-white"
           title={isPlaying ? "Pause" : "Play"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            width="16"
+            height="16"
+            className="sm:w-[18px] sm:h-[18px]"
             viewBox="0 0 24 24"
             fill={isPlaying ? "currentColor" : "none"}
             stroke="currentColor"
@@ -186,25 +187,25 @@ const Gallery = () => {
       </div>
 
       {/* Gallery */}
-      <div className="relative z-10 flex h-[calc(100vh-80px)] flex-col items-center justify-center px-2 pb-6">
-        <div className="mb-5 text-center">
-          <p className="text-[11px] uppercase tracking-[0.5em] text-pink-200/70">
+      <div className="relative z-10 flex min-h-[calc(100vh-80px)] flex-col items-center justify-center px-2 pb-6">
+        <div className="mb-3 sm:mb-5 text-center">
+          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.4em] text-pink-200/70">
             Sweet memories
           </p>
           <h2
-            className="mt-2 text-2xl italic text-white/95 sm:text-4xl"
+            className="mt-1 sm:mt-2 text-xl italic text-white/95 sm:text-4xl px-2"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             A little glimpse of my cutie 🫶🏻
           </h2>
-          <div className="mx-auto mt-3 flex items-center justify-center gap-3 text-rose-300/60">
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-rose-300/50" />
+          <div className="mx-auto mt-2 sm:mt-3 flex items-center justify-center gap-3 text-rose-300/60">
+            <span className="h-px w-8 sm:w-10 bg-gradient-to-r from-transparent to-rose-300/50" />
             <span className="text-xs">❤</span>
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-rose-300/50" />
+            <span className="h-px w-8 sm:w-10 bg-gradient-to-l from-transparent to-rose-300/50" />
           </div>
           {showNote && (
             <p
-              className="mx-auto mt-3 max-w-md text-sm italic text-pink-100/70 sm:text-base"
+              className="mx-auto mt-2 sm:mt-3 max-w-xs sm:max-w-md text-xs sm:text-sm italic text-pink-100/70 sm:text-base px-2"
               style={{ animation: "fadeUp 0.8s ease-out forwards" }}
             >
               {LOVE_NOTE}

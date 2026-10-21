@@ -41,8 +41,12 @@ export default function PasscodeLockScreen({ onComplete, correctCode }) {
   const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"];
 
   return (
-    <div style={styles.body}>
-      <div style={styles.screen} className={shake ? "shake" : ""}>
+    <div className="flex items-center justify-center w-full p-2 sm:p-4 font-['Poppins',sans-serif]">
+      <div
+        className={`relative w-full max-w-2xl bg-gradient-to-br from-[#7c1f2b] via-[#6b1a26] to-[#5e1620] rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row items-center p-3 sm:p-6 md:p-8 max-h-[92vh] overflow-y-auto ${
+          shake ? "shake" : ""
+        }`}
+      >
         <svg
           style={styles.sheetMusic}
           viewBox="0 0 230 160"
@@ -108,7 +112,7 @@ export default function PasscodeLockScreen({ onComplete, correctCode }) {
 
         <div style={styles.foldShadow} />
 
-        <div style={styles.heartWrap}>
+        <div className="relative w-36 h-36 sm:w-52 sm:h-52 md:w-72 md:h-72 shrink-0 my-2 md:my-0 md:ml-4 filter drop-shadow-[0_10px_18px_rgba(0,0,0,0.45)]">
           <svg
             style={styles.heartPhoto}
             viewBox="0 0 220 220"
@@ -240,7 +244,7 @@ export default function PasscodeLockScreen({ onComplete, correctCode }) {
           </svg>
 
           <svg
-            style={styles.ribbon}
+            className="absolute -top-3 -right-1 sm:-top-5 sm:right-2 w-12 h-10 sm:w-16 sm:h-14 pointer-events-none"
             viewBox="0 0 60 50"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -260,24 +264,39 @@ export default function PasscodeLockScreen({ onComplete, correctCode }) {
           </svg>
         </div>
 
-        <div style={styles.panel}>
-          <div style={styles.title}>Enter a passcode</div>
-          <div style={styles.hint}>Hint: both of our birthdays</div>
+        <div className="relative flex-1 flex flex-col items-center justify-center p-2 sm:p-4 z-10 w-full">
+          <div
+            className="text-xl sm:text-2xl md:text-3xl italic font-serif text-[#f3e6d8] mb-1 sm:mb-2 text-center"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Enter a passcode
+          </div>
+          <div className="text-xs sm:text-sm text-[#f3e6d8]/70 italic mb-3 sm:mb-4 text-center">
+            Hint: both of our birthdays
+          </div>
 
-          <div style={styles.boxRow}>
+          <div className="flex gap-2 sm:gap-3 mb-3 sm:mb-5">
             {Array.from({ length: MAX_DIGITS }).map((_, i) => (
               <div
                 key={i}
-                style={i < code.length ? styles.boxFilled : styles.boxEmpty}
+                className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center text-xl sm:text-2xl font-bold transition-all ${
+                  i < code.length
+                    ? "bg-[#f3e6d8] text-[#a8632f] shadow-md"
+                    : "bg-transparent border-2 border-[#f3e6d8]"
+                }`}
               >
                 {i < code.length ? "\u2022" : ""}
               </div>
             ))}
           </div>
 
-          {error && <div style={styles.error}>{error}</div>}
+          {error && (
+            <div className="text-xs sm:text-sm text-[#f9a8a8] mb-3 text-center max-w-[260px] leading-snug italic animate-pulse">
+              {error}
+            </div>
+          )}
 
-          <div style={styles.keypad}>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3.5 place-items-center">
             {keys.map((k) => (
               <button
                 key={k}
@@ -286,7 +305,11 @@ export default function PasscodeLockScreen({ onComplete, correctCode }) {
                   else if (k === "#") handleBackspace();
                   else handleDigit(k);
                 }}
-                style={k === "*" || k === "#" ? styles.keySymbol : styles.key}
+                className={`w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-full border-none bg-[#f3e6d8] text-[#8a3d33] font-semibold flex items-center justify-center cursor-pointer transition active:scale-90 shadow-md ${
+                  k === "*" || k === "#"
+                    ? "text-lg font-normal"
+                    : "text-base sm:text-lg"
+                }`}
                 aria-label={
                   k === "*" ? "Clear" : k === "#" ? "Backspace" : `Digit ${k}`
                 }

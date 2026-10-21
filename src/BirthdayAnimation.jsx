@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const BirthdayAnimation = () => {
   const [showConfetti, setShowConfetti] = useState(true);
+  const [isBlowing, setIsBlowing] = useState(false);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -30,7 +31,7 @@ const BirthdayAnimation = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[linear-gradient(135deg,_#fff7ed_0%,_#ffe4e6_45%,_#fdf2f8_100%)] text-slate-800">
+    <div className="relative min-h-screen overflow-x-hidden overflow-y-auto bg-[linear-gradient(135deg,_#fff7ed_0%,_#ffe4e6_45%,_#fdf2f8_100%)] text-slate-800 pb-12">
       {showConfetti && (
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
           <Confetti
@@ -45,29 +46,35 @@ const BirthdayAnimation = () => {
 
       <div className="relative z-20 flex justify-start px-4 pt-4">
         <Link
-          className="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
+          className="relative inline-flex h-10 sm:h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
           to={"/balloon-room"}
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#f472b6_0%,#fb7185_50%,#f59e0b_100%)]"></span>
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-white px-7 text-sm font-medium text-slate-700 shadow-sm backdrop-blur-3xl gap-2">
-            Back
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-white px-5 sm:px-7 text-xs sm:text-sm font-medium text-slate-700 shadow-sm backdrop-blur-3xl gap-2">
+            ← Back
           </span>
         </Link>
       </div>
 
-      <div className="container relative flex min-h-[calc(100vh-80px)] flex-col items-center justify-start pb-10 pt-6 sm:pt-10">
-        <div className="relative z-10 mb-6 text-center">
+      <div className="container mx-auto relative flex min-h-[calc(100vh-80px)] flex-col items-center justify-start pb-10 pt-4 sm:pt-8 px-4">
+        <div className="relative z-10 mb-4 sm:mb-6 text-center">
           <h2 className="birthdayText fade-in one">
-            Blow the candles, hover near the face
+            Blow the candles, tap or hover near her face
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-sm text-slate-600 sm:text-base">
-            A soft and sweet birthday moment to celebrate with joy.
+          <p className="mx-auto mt-2 max-w-md text-xs sm:text-sm text-slate-600 sm:text-base">
+            Tap or hover her face to blow out the candles 🎂
           </p>
         </div>
 
-        <div className="backg relative mx-auto">
-          <div className="table"></div>
-          <div className="girl">
+        <div className="relative mx-auto flex items-center justify-center w-full overflow-hidden py-2">
+          <div className="backg relative mx-auto scale-[0.78] sm:scale-90 md:scale-100 origin-top transition-transform duration-300">
+            <div className="table"></div>
+            <div
+              className={`girl cursor-pointer select-none ${
+                isBlowing ? "is-blowing" : ""
+              }`}
+              onClick={() => setIsBlowing((prev) => !prev)}
+            >
             <div className="hair1">
               <div className="hair2">
                 <div className="face">
@@ -137,6 +144,7 @@ const BirthdayAnimation = () => {
               <div className="c6"></div>
               <div className="c7"></div>
             </div>
+          </div>
           </div>
         </div>
       </div>

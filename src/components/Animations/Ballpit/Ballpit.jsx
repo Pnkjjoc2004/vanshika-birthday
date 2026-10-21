@@ -686,6 +686,12 @@ const Ballpit = ({ className = "", followCursor = true, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (spheresInstanceRef.current && typeof props.count === "number") {
+      spheresInstanceRef.current.setCount(props.count);
+    }
+  }, [props.count]);
+
   return <canvas className={`${className} w-full h-full`} ref={canvasRef} />;
 };
 
